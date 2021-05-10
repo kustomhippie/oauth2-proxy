@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: oauth2-proxy
+
+spec:
+  replicas: 1
+
+  template:
+    spec:
+      serviceAccountName: oauth2-proxy
+
+      containers:
+        - name: server
+          image: oauth2-proxy
+          imagePullPolicy: IfNotPresent
+
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: false
+            runAsNonRoot: true
+            runAsUser: 1000
+
+          envFrom:
+            - configMapRef:
+                name: oauth2-proxy
+            - secretRef:
+                name: oauth2-proxy
+
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+
+          resources:
+            requests:
+              cpu: "0.1"
+              memory: "64Mi"
+            limits:
+              cpu: "0.5"
+              memory: "512Mi"
+
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: http
+
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: http
+
+...

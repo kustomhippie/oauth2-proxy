@@ -3,20 +3,28 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - serviceaccount.yml
   - service.yml
   - deployment.yml
 
-commonLabels:
-  app.kubernetes.io/component: server
-
 configMapGenerator:
   - name: oauth2-proxy
+    options:
+      labels:
+        app.kubernetes.io/name: oauth2-proxy
+        app.kubernetes.io/component: server
     literals:
       - OAUTH2_PROXY_HTTP_ADDRESS=0.0.0.0:8080
       - OAUTH2_PROXY_REVERSE_PROXY=true
       - OAUTH2_PROXY_UPSTREAMS=file:///dev/null
       - OAUTH2_PROXY_FOOTER=-
       - OAUTH2_PROXY_EMAIL_DOMAINS=*
+
+secretGenerator:
+  - name: oauth2-proxy
+    options:
+      labels:
+        app.kubernetes.io/name: oauth2-proxy
+        app.kubernetes.io/component: server
+    literals: []
 
 ...

@@ -4,13 +4,30 @@ kind: Deployment
 
 metadata:
   name: oauth2-proxy
+  labels:
+    app.kubernetes.io/name: oauth2-proxy
+    app.kubernetes.io/component: server
 
 spec:
   replicas: 1
+  revisionHistoryLimit: 3
+
+  strategy:
+    type: Recreate
+
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: oauth2-proxy
+      app.kubernetes.io/component: server
 
   template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: oauth2-proxy
+        app.kubernetes.io/component: server
+
     spec:
-      serviceAccountName: oauth2-proxy
+      enableServiceLinks: false
 
       containers:
         - name: server

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/kustomhippie/oauth2-proxy/compare/v2.2.0...v2.3.0) (2024-10-07)
+
+
+### Features
+
+* **deps:** update quay.io/oauth2-proxy/oauth2-proxy docker tag to v7.7.0 ([7eb1270](https://github.com/kustomhippie/oauth2-proxy/commit/7eb12705e5fd4ef0a21f807c2ffb1fa46e0b81bd))
+
 ## [2.2.0](https://github.com/kustomhippie/oauth2-proxy/compare/v2.1.1...v2.2.0) (2024-02-19)
 
 

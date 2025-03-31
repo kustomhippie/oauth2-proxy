@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/kustomhippie/oauth2-proxy/compare/v2.4.0...v2.4.1) (2025-03-31)
+
+
+### Bugfixes
+
+* **deps:** update quay.io/oauth2-proxy/oauth2-proxy docker tag to v7.8.2 ([#14](https://github.com/kustomhippie/oauth2-proxy/issues/14)) ([291a652](https://github.com/kustomhippie/oauth2-proxy/commit/291a65212672a1bf551d6dba43a783bce0ae46ad))
+
 ## [2.4.0](https://github.com/kustomhippie/oauth2-proxy/compare/v2.3.1...v2.4.0) (2025-01-20)
 
 
